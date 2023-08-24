@@ -1,0 +1,38 @@
+direction = input('type encode to  encrypt, type decode to decrypt :')
+text = input('enter your message :')
+shift = int(input('type the shift number :'))
+cipher_text = ''
+decoded_text = ''
+
+def encode_text(text_, shift_amount):
+    #to find the new unicode
+    cipher_text = ''
+    for x in text_:
+        new_ch = ord(x) + shift_amount
+        #to turn back
+        if new_ch > 122:
+            remainder = new_ch % 122
+            new_val = 96 + remainder
+            cipher_text += chr(new_val)
+        else:
+            cipher_text += chr(new_ch)
+    return f'Here is your encoded text: {cipher_text}'
+
+def decode_text(text_, shift_amount):
+    decoded_text = ''
+    for y in text_:
+        new_ch = ord(y) - shift_amount
+        #to turn back
+        if new_ch < 97:
+            new_val = ord(y) + 25
+            decoded_text += chr(new_val)
+        else:
+            decoded_text += chr(new_ch)
+    return f'Here is your decoded text: {decoded_text}'
+
+if direction == 'encode':
+    result = encode_text(text, shift)
+    print(result)
+elif direction == 'decode':
+    result = decode_text(text, shift)
+    print(result)
